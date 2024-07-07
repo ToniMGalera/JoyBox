@@ -1,13 +1,206 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es" ng-app="joyBoxApp">
 <head>
-  <meta charset="utf-8">
-  <title>MyProject</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joy Boxes</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #6A6A6A;
+            color: #FFFFFF;
+            padding-top: 70px;
+        }
+        .navbar {
+            background-color: #2C2C2C;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar-brand {
+            color: #EC0909;
+            font-family: 'Arial', sans-serif;
+            font-size: 24px;
+        }
+        .navbar-nav .nav-link, .btn {
+            color: #FFFFFF;
+            border-radius: 20px; /* Borde redondeado */
+            margin: 0 5px;
+            padding: 5px 15px; /* Añadido padding para hacerlo más botonlike */
+            border: 1px solid transparent; /* Añadir borde inicialmente transparente */
+        }
+        .navbar-nav .nav-link:hover, .btn:hover {
+            color: #EC0909;
+            border-color: #EC0909; /* Cambiar el borde al hacer hover */
+        }
+        .container-custom {
+            background-color: #4B4B4B;
+            padding: 20px;
+            margin-top: 20px;
+            color: #FFFFFF;
+            min-height: calc(100vh - 110px);
+        }
+        .intro-text {
+            color: #FFFFFF;
+            text-align: justify;
+        }
+        .box {
+            background-color: #4B4B4B;
+            color: #FFFFFF;
+            text-align: center;
+            position: relative;
+            margin: 10px 0;
+            height: 400px; /* Aumentar la altura de las imágenes de abajo */
+            overflow: hidden;
+            border-radius: 15px; /* Redondear las esquinas */
+        }
+        .inner-content {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .inner-content img {
+            width: 100%; /* Ajustar el tamaño de las imágenes */
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px; /* Redondear las esquinas */
+        }
+        .highlight, .highlight-right {
+            background-color: #EC0909;
+            color: #FFFFFF;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        .highlight {
+            left: 10px;
+        }
+        .highlight-right {
+            right: 10px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .row-custom {
+            display: flex;
+            flex-wrap: nowrap; /* Cambiar para que no envuelva */
+            overflow-x: auto; /* Agregar desplazamiento horizontal */
+        }
+        .col-custom {
+            flex: 0 0 auto; /* Cambiar para que no estire */
+            margin: 10px;
+        }
+        .image-column {
+            display: flex;
+            align-items: center;
+        }
+        .image-column img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px; /* Redondear las esquinas */
+        }
+    </style>
 </head>
-<body>
-  <app-root></app-root>
+<body ng-controller="MainController">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">JÖYBÖX</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Boxes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+                <div class="ml-auto">
+                    <a class="btn btn-link nav-link" href="#">Iniciar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container-custom">
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <h1>JOY BOXES</h1>
+                <p class="intro-text">
+                    Nuestros paquetes son colecciones de juegos, libros, software y mucho más por tiempo limitado. Paga lo que quieras por ellos y elige a dónde enviar el dinero, incluidas organizaciones benéficas. Muchos de los paquetes se ofrecen por tramos, con un precio inicial de tan solo 1 USD. ¡Cuanto más contribuyes, más obtienes!
+                </p>
+            </div>
+            <div class="col-md-4 image-column">
+                <img src="assets/img/assassins_creed_shadows.jpg" alt="Image 1">
+            </div>
+          </div>
+          <div class="row row-custom" id="scroll-container">
+            <div class="controls">
+                <div class="highlight" onclick="scrollLeft()">&#9664;</div>
+                <div class="highlight-right" onclick="scrollRight()">&#9654;</div>
+            </div>
+            <div class="col-md-4 col-custom">
+                <div class="box">
+                    <div class="inner-content">
+                        <img src="assets/img/mando1200x675.jpg" alt="Image 2">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-custom">
+                <div class="box">
+                    <div class="inner-content">
+                        <img src="assets/img/mandops.jpg" alt="Image 3">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-custom">
+                <div class="box">
+                    <div class="inner-content">
+                        <img src="assets/img/cozy-vr-games-1200x675.jpg" alt="Image 4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script>
+        var app = angular.module('joyBoxApp', []);
+        app.controller('MainController', function($scope) {
+            $scope.scrollLeft = function() {
+                document.getElementById('scroll-container').scrollBy({
+                    left: -300,
+                    behavior: 'smooth'
+                });
+            };
+            $scope.scrollRight = function() {
+                document.getElementById('scroll-container').scrollBy({
+                    left: 300,
+                    behavior: 'smooth'
+                });
+            };
+        });
+
+        function scrollLeft() {
+            document.getElementById('scroll-container').scrollBy({
+                left: -300,
+                behavior: 'smooth'
+            });
+        }
+
+        function scrollRight() {
+            document.getElementById('scroll-container').scrollBy({
+                left: 300,
+                behavior: 'smooth'
+            });
+        }
+    </script>
 </body>
 </html>
