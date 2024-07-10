@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boxes</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <style>
         body {
             background-color: #6A6A6A;
@@ -195,6 +196,9 @@
     height: 250px;
     border-radius: 10px;
 }
+.container {
+            align-items: stretch;
+        } 
 
     </style>
 </head>
@@ -211,12 +215,19 @@
                         <a class="nav-link" href="boxes.html">Boxes</a> <!-- Redirigir a boxes.html -->
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="About.html">About</a>
+
                     </li>
                 </ul>
-                <div class="ml-auto">
-                    <a class="btn btn-link nav-link" href="#">Iniciar Sesión</a>
-                </div>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="btn btn-link nav-link" href="#">Iniciar Sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-link nav-link" href="carrito.html"><i class="fas fa-shopping-cart"></i> Carrito</a>
+                    
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -240,6 +251,7 @@
             <button class="btn btn-secondary active" onclick="filterBoxes('videojuegos')">Videojuegos</button>
             <button class="btn btn-secondary" onclick="filterBoxes('libros')">Libros</button>
         </div>
+        
         <div class="row justify-content-center">
             <!-- Primer grupo de packs -->
             <div class="col-lg-4 box" data-category="videojuegos" data-url="Eco_Box.html">
@@ -331,6 +343,7 @@
                 <div class="countdown" data-end-time="2024-07-09T00:00:00Z">Cuenta Atrás<br><span class="time-remaining"></span></div>
             </div>
         </div>
+         
        
         <div class="promo-button">
             <div class="toggle-button" onclick="toggleText()">Saber más sobre los boxes <span class="arrow">▼</span></div>

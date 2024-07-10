@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STRATE-GOG Bundle</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <style>
         body {
             background-color: #1A1A1A;
@@ -177,9 +178,15 @@
                         <a class="nav-link" href="#">About</a>
                     </li>
                 </ul>
-                <div class="ml-auto">
-                    <a class="btn btn-link nav-link" href="#">Iniciar Sesión</a>
-                </div>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="btn btn-link nav-link" href="#">Iniciar Sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-link nav-link" href="carrito.html"><i class="fas fa-shopping-cart"></i> Carrito</a>
+                    
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -261,12 +268,12 @@
 
             <div class="col-md-4">
                 <div class="pricing-options">
-                    <button class="btn btn-primary">9,35 €</button>
-                    <button class="btn btn-primary">14,03 €</button>
-                    <button class="btn btn-primary">16,84 €</button>
-                    <button class="btn btn-primary">25 €</button>
-                    <button class="btn btn-primary">30 €</button>
-                    <button class="btn btn-primary">35 €</button>
+                    <button class="btn btn-primary filter-price" data-price="9.35">9,35 €</button>
+                    <button class="btn btn-primary filter-price" data-price="14.03">14,03 €</button>
+                    <button class="btn btn-primary filter-price" data-price="16.84">16,84 €</button>
+                    <button class="btn btn-primary filter-price" data-price="25">25 €</button>
+                    <button class="btn btn-primary filter-price" data-price="30">30 €</button>
+                    <button class="btn btn-primary filter-price" data-price="35">35 €</button>
                 </div>
 
                 <div class="purchase-button">
@@ -288,7 +295,7 @@
                 </div>
 
                 <div class="support-info">
-                    <p>Need help? Visit our <a href="#">Support Page</a> or contact us directly. Plus, your purchase helps support Xperience Studios!</p>
+                    <p>¿Necesitas ayuda? Visita nuestra <a href="#">Página de Soporte</a> o contáctanos directamente. ¡Además, tu compra ayuda a apoyar a Xperience Studios!</p>
                 </div>
             </div>
         </div>
@@ -350,7 +357,27 @@
                 });
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var priceButtons = document.querySelectorAll('.filter-price');
+
+            priceButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var price = parseFloat(button.getAttribute('data-price'));
+
+                    var gameItems = document.querySelectorAll('.game-item');
+                    gameItems.forEach(function (item) {
+                        var itemPrice = parseFloat(item.getAttribute('data-price'));
+                        if (itemPrice <= price) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
     </script>
 </body>
 
-</html>
+</html>s
